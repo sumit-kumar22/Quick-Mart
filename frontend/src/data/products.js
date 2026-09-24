@@ -26,7 +26,7 @@ function makeProduct({
     sku: `${brand.slice(0, 2).toUpperCase()}${id.toUpperCase().replace(/\D/g, '')}`,
     name,
     slug: slug(name),
-    image: `/images/products/${slug(name)}.jpg`,
+    image: `${import.meta.env.BASE_URL}images/products/${slug(name)}.jpg`,
     brand,
     category,
     subcategory,
