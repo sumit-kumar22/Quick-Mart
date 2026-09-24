@@ -1,7 +1,7 @@
 import mockApi from './mockApi.js';
 import api from './api.js';
 
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true';
+const USE_MOCK = import.meta.env.VITE_USE_MOCK === 'true' || import.meta.env.VITE_USE_MOCK === true || import.meta.env.VITE_USE_MOCK === undefined;
 
 const withId = (d) => (d && typeof d === 'object' && !Object.prototype.hasOwnProperty.call(d, 'id') ? { ...d, id: d.id || d._id || d.orderId } : d);
 

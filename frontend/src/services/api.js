@@ -15,7 +15,15 @@ api.interceptors.request.use((config) => {
 });
 
 api.interceptors.response.use(
-  (res) => res,
+  (res) => {
+    if (typeof res.data === 'string' && res.data.trim().startsWith('<!doctype')) {
+      const err = new Error('API endpoint returned HTML (backend not connected)');
+      err.code = 'ENDPOINT_NOT_FOUND';
+      err.status = 404;
+      return Promise.reject(err);
+    }
+    return res;
+  },
   (error) => {
     const message = error.response?.data?.message || error.message || 'Something went wrong';
     const code = error.response?.data?.code || 'SERVER_ERROR';

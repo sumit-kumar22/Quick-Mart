@@ -12,7 +12,10 @@ export default function HeroSection() {
 
   useEffect(() => {
     apiService.getBanners()
-      .then((res) => setBanners(res.data || []))
+      .then((res) => {
+        const list = Array.isArray(res?.data) ? res.data : (Array.isArray(res?.data?.data) ? res.data.data : (Array.isArray(res) ? res : []));
+        setBanners(list);
+      })
       .catch(() => setBanners([]))
       .finally(() => setLoading(false));
   }, []);

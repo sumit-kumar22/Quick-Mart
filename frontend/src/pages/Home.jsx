@@ -44,7 +44,7 @@ export default function Home() {
       <ProductRow
         title="Top Deals"
         subtitle="Best selling products at the best prices today"
-        products={deals?.sort((a, b) => b.discount - a.discount)}
+        products={Array.isArray(deals) ? deals.slice().sort((a, b) => (b.discount || 0) - (a.discount || 0)) : (Array.isArray(deals?.data) ? deals.data.slice().sort((a, b) => (b.discount || 0) - (a.discount || 0)) : [])}
         loading={dealsLoading}
         viewAllLink="/search?sort=discount"
       />

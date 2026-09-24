@@ -4,13 +4,13 @@ import { apiService } from '../../services/apiService.js';
 import { Skeleton } from '../ui/Skeleton.jsx';
 
 export default function PromoBanners() {
-  const { data, loading } = useAsync(() => apiService.getFreshnessBanners(), []);
+  const banners = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
   if (loading) return <div className="grid grid-cols-2 md:grid-cols-4 gap-3"><Skeleton className="h-32 rounded-card" /><Skeleton className="h-32 rounded-card" /><Skeleton className="h-32 rounded-card" /><Skeleton className="h-32 rounded-card" /></div>;
-  if (!data?.length) return null;
+  if (!banners.length) return null;
 
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-      {data.map((b) => (
+      {banners.map((b) => (
         <Link
           key={b.id}
           to={b.link}

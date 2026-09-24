@@ -7,7 +7,7 @@ import { Skeleton } from '../ui/Skeleton.jsx';
 
 export default function CategoryStrip({ limit = 12 }) {
   const { data, loading } = useAsync(() => apiService.getCategories(), []);
-  const cats = useMemo(() => data || [], [data]);
+  const cats = useMemo(() => (Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : [])), [data]);
 
   if (loading) return <Skeleton className="h-24 w-full rounded-card" />;
 

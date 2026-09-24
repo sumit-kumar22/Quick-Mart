@@ -12,7 +12,7 @@ import { UIProvider } from './context/UIContext.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/Quick-Mart">
+    <BrowserRouter basename={(import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '/'}>
       <ToastProvider>
         <AuthProvider>
           <LocationProvider>

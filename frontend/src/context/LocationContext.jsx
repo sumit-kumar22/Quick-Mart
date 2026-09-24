@@ -20,7 +20,8 @@ export function LocationProvider({ children }) {
     apiService
       .getStores()
       .then((res) => {
-        if (active) setStores(res?.data?.data ?? []);
+        const list = Array.isArray(res?.data) ? res.data : (Array.isArray(res?.data?.data) ? res.data.data : (Array.isArray(res) ? res : []));
+        if (active) setStores(list);
       })
       .catch(() => {});
     return () => {
