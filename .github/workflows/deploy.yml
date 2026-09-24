@@ -38,6 +38,8 @@ jobs:
       - name: Build
         working-directory: ./frontend
         run: npm run build
+        env:
+          VITE_USE_MOCK: true
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
