@@ -62,8 +62,8 @@ export function AuthProvider({ children }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const login = useCallback(async ({ email, password }) => {
-    const res = await apiService.login({ email, password });
+  const login = useCallback(async ({ email, password, role }) => {
+    const res = await apiService.login({ email, password, role });
     const { token, refreshToken, user: loggedIn } = extractUser(res);
     if (!loggedIn) throw new Error('Login failed');
     setUser(loggedIn);

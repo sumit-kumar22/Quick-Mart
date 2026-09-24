@@ -123,7 +123,7 @@ export const mockApi = {
 
   // ---- user ----
   register: async (data) => ok({ ...data, id: 'u-new' }),
-  login: async (data) => ok({ token: 'mock-token', user: currentUser }),
+  login: async (data) => ok({ token: 'mock-token', user: { ...currentUser, role: data?.role || 'CUSTOMER' } }),
   getProfile: async () => ok(currentUser),
   updateProfile: async (patch) => ok({ ...currentUser, ...patch }),
   getAddresses: async () => ok(currentUser.addresses),

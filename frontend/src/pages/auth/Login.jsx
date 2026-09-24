@@ -8,10 +8,10 @@ import { apiService } from '../../services/apiService.js';
 const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID || '';
 
 const ROLE_OPTIONS = [
-  { role: 'CUSTOMER', label: 'Customer', hint: 'Shop groceries' },
-  { role: 'ADMIN', label: 'Store Admin', hint: 'Store admin@quickmart.co' },
-  { role: 'SUPER_ADMIN', label: 'Super Admin', hint: 'superadmin@quickmart.co' },
-  { role: 'DELIVERY_PARTNER', label: 'Delivery Partner', hint: 'ajay@quickmart.co' },
+  { role: 'CUSTOMER', label: 'Customer', hint: 'Shop groceries', demoEmail: 'aarav@example.com' },
+  { role: 'ADMIN', label: 'Store Admin', hint: 'Store admin@quickmart.co', demoEmail: 'admin@quickmart.co' },
+  { role: 'SUPER_ADMIN', label: 'Super Admin', hint: 'superadmin@quickmart.co', demoEmail: 'superadmin@quickmart.co' },
+  { role: 'DELIVERY_PARTNER', label: 'Delivery Partner', hint: 'ajay@quickmart.co', demoEmail: 'ajay@quickmart.co' },
 ];
 
 export default function Login() {
@@ -111,7 +111,10 @@ export default function Login() {
             <button
               key={r.role}
               type="button"
-              onClick={() => setRole(r.role)}
+              onClick={() => {
+                setRole(r.role);
+                setForm({ email: r.demoEmail, password: 'password123' });
+              }}
               className={`rounded-xl border p-2.5 text-left transition cursor-pointer ${role === r.role ? 'border-brand-500 bg-brand-50 ring-2 ring-brand-500/20' : 'border-slate-200 hover:border-brand-300'}`}
             >
               <p className="text-sm font-semibold text-slate-800">{r.label}</p>
