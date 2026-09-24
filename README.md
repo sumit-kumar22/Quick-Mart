@@ -1,5 +1,5 @@
 🛒 QuickMart
-
+https://frontend-eta-two-prpvck7g1w.vercel.app/login
 A production-oriented full-stack quick-commerce grocery and essentials
 delivery platform.
 
@@ -590,7 +590,7 @@ Git
 
 Clone
 
-git clone https://github.com/YOUR_USERNAME/QuickMart.git
+git clone https://github.com/sumit-kumar22/QuickMart.git
 cd QuickMart
 
 Frontend
@@ -1142,3 +1142,7 @@ QuickMart-PRD.md
 QuickMart --- Quick-Commerce Grocery & Essentials Platform
 
 Built as an original full-stack portfolio/project implementation.
+
+
+
+https://frontend-eta-two-prpvck7g1w.vercel.app/login
