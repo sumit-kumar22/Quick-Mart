@@ -179,7 +179,7 @@ export default function Header() {
                   <Link to="/notifications" onClick={() => setNotifOpen(false)} className="text-xs text-brand-600 hover:underline">View all</Link>
                 </div>
                 <div className="max-h-80 overflow-y-auto thin-scroll">
-                  {notifs.slice(0, 5).map((n) => (
+                  {(Array.isArray(notifs) ? notifs : (Array.isArray(notifs?.data) ? notifs.data : [])).slice(0, 5).map((n) => (
                     <button key={n.id || n._id} onClick={() => { setNotifOpen(false); navigate(n.link || '/notifications'); }} className={cn('w-full text-left px-4 py-3 border-b border-slate-50 hover:bg-slate-50 cursor-pointer', !n.read && 'bg-brand-50/50')}>
                       <p className="text-sm font-medium text-slate-800">{n.title}</p>
                       <p className="text-xs text-slate-500 line-clamp-2 mt-0.5">{n.body}</p>

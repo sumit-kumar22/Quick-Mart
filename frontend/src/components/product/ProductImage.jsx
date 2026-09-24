@@ -1,6 +1,7 @@
 import { cn } from '../../utils/cn.js';
 
 export default function ProductImage({ product, className, size = 20 }) {
+  if (!product) return null;
   return (
     <div
       className={cn(
@@ -9,10 +10,16 @@ export default function ProductImage({ product, className, size = 20 }) {
         className
       )}
       role="img"
-      aria-label={product.name}
+      aria-label={product.name || 'Product'}
     >
       {product.image ? (
-        <img src={product.image} alt={product.name} loading="lazy" className="w-full h-full object-cover" />
+        <img
+          src={product.image}
+          alt={product.name || 'Product'}
+          loading="lazy"
+          className="w-full h-full object-cover"
+          onError={(e) => { e.currentTarget.style.display = 'none'; }}
+        />
       ) : (
         <span className="drop-shadow-sm select-none" style={{ fontSize: typeof size === 'number' ? `${size}px` : size }} aria-hidden="true">
           {product.emoji || '📦'}

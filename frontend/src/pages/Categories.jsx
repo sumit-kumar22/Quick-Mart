@@ -14,7 +14,7 @@ export default function Categories() {
       </div>
 
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-        {(categories || []).map((c) => {
+        {(Array.isArray(categories) ? categories : (Array.isArray(categories?.data) ? categories.data : [])).map((c) => {
           const Icon = Icons[c.icon] || Icons.ShoppingBasket;
           return (
             <Link

@@ -9,23 +9,30 @@ import { WishlistProvider } from './context/WishlistContext.jsx';
 import { LocationProvider } from './context/LocationContext.jsx';
 import { ToastProvider } from './context/ToastContext.jsx';
 import { UIProvider } from './context/UIContext.jsx';
+import ErrorBoundary from './components/ui/ErrorBoundary.jsx';
+
+const basename = import.meta.env.BASE_URL && import.meta.env.BASE_URL !== '/'
+  ? import.meta.env.BASE_URL.replace(/\/$/, '')
+  : undefined;
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename={(import.meta.env.BASE_URL || '/').replace(/\/$/, '') || '/'}>
-      <ToastProvider>
-        <AuthProvider>
-          <LocationProvider>
-            <UIProvider>
-              <CartProvider>
-                <WishlistProvider>
-                  <App />
-                </WishlistProvider>
-              </CartProvider>
-            </UIProvider>
-          </LocationProvider>
-        </AuthProvider>
-      </ToastProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter basename={basename}>
+        <ToastProvider>
+          <AuthProvider>
+            <LocationProvider>
+              <UIProvider>
+                <CartProvider>
+                  <WishlistProvider>
+                    <App />
+                  </WishlistProvider>
+                </CartProvider>
+              </UIProvider>
+            </LocationProvider>
+          </AuthProvider>
+        </ToastProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   </React.StrictMode>
 );

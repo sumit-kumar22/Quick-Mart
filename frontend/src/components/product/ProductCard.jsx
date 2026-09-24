@@ -64,7 +64,7 @@ export default function ProductCard({ product }) {
               <div className="rounded-lg border border-brand-600 overflow-hidden w-24">
                 <div className="flex items-center justify-between">
                   <button className="h-7" aria-hidden="true" tabIndex={-1} />
-                  <QuantitySelector quantity={quantity} onChange={setQuantity} min={1} max={Math.min(product.maxQty, product.stock)} size="sm" />
+                  <QuantitySelector quantity={quantity} onChange={setQuantity} min={1} max={Math.min(product.maxQty || 10, product.stock || 99)} size="sm" />
                 </div>
               </div>
             ) : null}

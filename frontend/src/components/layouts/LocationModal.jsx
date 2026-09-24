@@ -61,7 +61,7 @@ export default function LocationModal() {
           <p className="text-xs font-semibold text-slate-400 uppercase tracking-wide mb-2">Saved Locations</p>
           <ul className="space-y-1.5">
             {filtered.map((l) => {
-              const store = stores.find((s) => s.id === l.storeId);
+              const store = (Array.isArray(stores) ? stores : []).find((s) => s.id === l.storeId);
               const active = location?.storeId === l.storeId && location?.label === l.label;
               return (
                 <li key={l.address}>
